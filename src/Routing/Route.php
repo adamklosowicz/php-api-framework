@@ -2,6 +2,8 @@
 
 namespace MicroApiFramework\Routing;
 
+use MicroApiFramework\Http\Request;
+
 class Route {
 
     public function __construct(
@@ -18,8 +20,8 @@ class Route {
         return $this->uri;
     }
 
-    public function getHandler(): array {
-        $controller = new $this->handler[0]();
+    public function getHandler(Request $request): array {
+        $controller = new $this->handler[0]($request);
         return [$controller, $this->handler[1]];
     }
 

@@ -8,15 +8,20 @@ use MicroApiFramework\Http\Response;
 
 class TestController {
     
-    public function index(Request $request): Response {
+    public function __construct(
+        private Request $request
+    ) {}
+    
+    public function index(): Response {
         return new Response([
             'users' => []
         ], HttpStatus::NO_CONTENT);
     }
 
-    public function show(Request $request, string $id): Response {
+    public function show(string $id): Response {
         return new Response([
-            'users' => [$id]
+            'users' => [$id],
+            'method' => $this->request->getMethod()
         ]);
     }
 }

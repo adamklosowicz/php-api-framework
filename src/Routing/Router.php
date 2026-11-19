@@ -18,11 +18,11 @@ class Router {
             return new Response(['error' => 'Not Found'], 404);
         }
 
-        $handler = $route->getHandler();
+        $handler = $route->getHandler($request);
 
         $parameters = $route->getParameters($request->getUri());
 
-        $response = call_user_func_array($handler, array_values(array_merge(array($request), $parameters)));
+        $response = call_user_func_array($handler, array_values($parameters));
 
         if (!$response instanceof Response) {
             throw new \LogicException('Route handler must return a Response instance.');
