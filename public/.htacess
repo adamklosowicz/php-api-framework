@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Jeżeli istnieje rzeczywisty plik lub katalog,
+# nie przekierowuj żądania.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Wszystkie pozostałe żądania przekazuj do index.php
+RewriteRule ^ index.php [QSA,L]

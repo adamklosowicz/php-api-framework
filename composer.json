@@ -1,0 +1,15 @@
+{
+    "name": "adamklosowicz/php-micro-api-framework",
+    "description": "Lightweight PHP framework for building REST APIs",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MicroApiFramework\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.4",
+        "symfony/yaml": "^8.1"
+    }
+}

@@ -1,0 +1,10 @@
+routes:
+  - method: GET
+    path: /users
+    controller: MicroApiFramework\App\TestController
+    action: index
+
+  - method: GET
+    path: /users/{id}
+    controller: MicroApiFramework\App\TestController
+    action: show
