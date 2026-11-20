@@ -12,20 +12,16 @@ class RouteCollection {
         $config = Yaml::parseFile($configYmlPath);
 
         foreach ($config['routes'] ?? [] as $route) {
-            $controller = $route['controller'];
-            $action = $route['action'];
-            $handler = [$controller, $action];
-
-            $this->add(new Route($route['method'], $route['path'], $handler));
+            $this->add($route['name'], new Route($route['method'], $route['path'], $route['controller'], $route['action']));
         }
-    }
-
-    public function add(Route $route): void {
-        $this->routes[] = $route;
     }
 
     public function getAll(): array {
         return $this->routes;
+    }
+
+    public function add(string $name, Route $route): void {
+        $this->routes[$name] = $route;
     }
 
     public function find(string $method, string $uri): ?Route {

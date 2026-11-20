@@ -1,16 +1,12 @@
 <?php
 
-namespace MicroApiFramework\App;
+namespace ExampleApp\Controllers;
 
 use MicroApiFramework\Http\HttpStatus;
-use MicroApiFramework\Http\Request;
 use MicroApiFramework\Http\Response;
+use MicroApiFramework\Routing\Controller;
 
-class TestController {
-    
-    public function __construct(
-        private Request $request
-    ) {}
+class ExampleController extends Controller {
     
     public function index(): Response {
         return new Response([
@@ -18,7 +14,7 @@ class TestController {
         ], HttpStatus::NO_CONTENT);
     }
 
-    public function show(string $id): Response {
+    public function show(int $id): Response {
         return new Response([
             'users' => [$id],
             'method' => $this->request->getMethod()

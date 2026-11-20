@@ -5,7 +5,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "MicroApiFramework\\": "src/"
+            "MicroApiFramework\\": "src/MicroApiFramework/",
+            "ExampleApp\\": "src/ExampleApp/"
         }
     },
     "require": {

@@ -12,9 +12,7 @@ class Application {
         $routeCollection = new RouteCollection($configYmlPath);
         $router = new Router($routeCollection);
 
-        $request = Request::capture();
-
-        $response = $router->dispatch($request);
+        $response = $router->process(Request::capture());
         $response->send();
     }
 

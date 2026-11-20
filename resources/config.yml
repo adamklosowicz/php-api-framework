@@ -1,10 +1,12 @@
 routes:
-  - method: GET
+  - name: getAllUsers
+    method: GET
     path: /users
-    controller: MicroApiFramework\App\TestController
+    controller: ExampleApp\Controllers\ExampleController
     action: index
 
-  - method: GET
+  - name: getUser
+    method: GET
     path: /users/{id}
-    controller: MicroApiFramework\App\TestController
+    controller: ExampleApp\Controllers\ExampleController
     action: show
