@@ -1,8 +1,8 @@
 <?php
 
-namespace MicroApiFramework\Routing;
+namespace MicroApiFramework\Processing;
 
-use Exception;
+use MicroApiFramework\Exceptions\ResponseException;
 use MicroApiFramework\Http\Request;
 
 class Controller {
@@ -15,13 +15,13 @@ class Controller {
         if ($request->getMethod() == 'GET') {
             foreach ($queryParams as $field) {
                 if (isset($field['required']) && $field['required'] == 'true' && !in_array($field['name'], array_keys($request->getQueryParams()))) {
-                    throw new Exception('Missing field "' . $field['name'] . '"');
+                    throw new ResponseException("Missing field '{$field['name']}'");
                 }
                 if (isset($field['min']) && in_array($field['name'], array_keys($request->getQueryParams())) && $request->getQueryParams()[$field['name']] < $field['min']) {
-                    throw new Exception('Value too small for field "' . $field['name'] . '"');
+                    throw new ResponseException("Value too small for field '{$field['name']}'");
                 }
                 if (isset($field['max']) && in_array($field['name'], array_keys($request->getQueryParams())) && $request->getQueryParams()[$field['name']] > $field['max']) {
-                    throw new Exception('Value too big for field "' . $field['name'] . '"');
+                    throw new ResponseException("Value too big for field '{$field['name']}'");
                 }
             }
         }

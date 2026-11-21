@@ -1,3 +1,5 @@
+debug: true
+
 routes:
   - name: getAllUsers
     method: GET

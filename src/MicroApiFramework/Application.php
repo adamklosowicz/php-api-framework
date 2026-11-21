@@ -2,15 +2,15 @@
 
 namespace MicroApiFramework;
 
+use MicroApiFramework\Config\Config;
 use MicroApiFramework\Http\Request;
 use MicroApiFramework\Routing\Router;
-use MicroApiFramework\Routing\RouteCollection;
 
 class Application {
 
     public static function run(string $configYmlPath): void {
-        $routeCollection = new RouteCollection($configYmlPath);
-        $router = new Router($routeCollection);
+        $config = new Config($configYmlPath);
+        $router = new Router($config);
 
         $response = $router->process(Request::capture());
         $response->send();

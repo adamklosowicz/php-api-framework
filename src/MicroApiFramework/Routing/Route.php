@@ -3,6 +3,7 @@
 namespace MicroApiFramework\Routing;
 
 use MicroApiFramework\Http\Request;
+use MicroApiFramework\Processing\Controller;
 
 class Route {
 
