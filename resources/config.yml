@@ -4,6 +4,15 @@ routes:
     path: /users
     controller: ExampleApp\Controllers\ExampleController
     action: index
+    queryParams:
+      - name: name
+        required: true
+        type: string
+      - name: age
+        required: false
+        type: int
+        min: 0
+        max: 99
 
   - name: getUser
     method: GET

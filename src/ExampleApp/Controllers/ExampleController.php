@@ -11,7 +11,7 @@ class ExampleController extends Controller {
     public function index(): Response {
         return new Response([
             'users' => []
-        ], HttpStatus::NO_CONTENT);
+        ], HttpStatus::OK);
     }
 
     public function show(int $id): Response {

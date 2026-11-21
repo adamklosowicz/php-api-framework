@@ -12,7 +12,9 @@ class RouteCollection {
         $config = Yaml::parseFile($configYmlPath);
 
         foreach ($config['routes'] ?? [] as $route) {
-            $this->add($route['name'], new Route($route['method'], $route['path'], $route['controller'], $route['action']));
+            $queryParams = $route['queryParams'] ?? [];
+            $body = $route['body'] ?? [];
+            $this->add($route['name'], new Route($route['method'], $route['path'], $route['controller'], $route['action'], $queryParams, $body));
         }
     }
 
