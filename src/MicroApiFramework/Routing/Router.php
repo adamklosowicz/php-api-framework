@@ -2,10 +2,9 @@
 
 namespace MicroApiFramework\Routing;
 
-use MicroApiFramework\Http\HttpStatus;
 use MicroApiFramework\Http\Request;
 use MicroApiFramework\Http\Response;
-use MicroApiFramework\Processing\Driver;
+use MicroApiFramework\Processing\RequestHandler;
 
 class Router {
 
@@ -15,7 +14,7 @@ class Router {
 
     public function process(Request $request): Response {
         $route = $this->routes->find($request->getMethod(), $request->getUri());
-        $driver = new Driver($route, $request);
-        return $driver->process();
+        $handler = new RequestHandler($route, $request);
+        return $handler->process();
     }
 }

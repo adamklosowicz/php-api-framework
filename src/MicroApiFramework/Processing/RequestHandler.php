@@ -2,7 +2,6 @@
 
 namespace MicroApiFramework\Processing;
 
-use Exception;
 use MicroApiFramework\Http\HttpStatus;
 use MicroApiFramework\Http\Request;
 use MicroApiFramework\Http\Response;
@@ -11,7 +10,7 @@ use MicroApiFramework\Routing\Route;
 use Throwable;
 use TypeError;
 
-class Driver {
+class RequestHandler {
 
     public function __construct(
         protected ?Route $route,
