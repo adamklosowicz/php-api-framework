@@ -12,19 +12,26 @@ class ProcessValidator {
 
     static function validateRoute(?Route $route): void {
         if (is_null($route)) {
-            throw new ResponseException('Invalid URI', HttpStatus::NOT_FOUND);
+            throw new ResponseException(
+                errorMsg: 'Invalid URI!',
+                statusCode: HttpStatus::NOT_FOUND
+            );
         }
     }
 
     static function validateController(mixed $controller): void {
         if (!$controller instanceof Controller) {
-            throw new ResponseException('Route controller has wrong implementation.');
+            throw new ResponseException(
+                debugMsg: "Route controller has wrong implementation."
+            );
         }
     }
 
     static function validateResponse(mixed $response): void {
         if (!$response instanceof Response) {
-            throw new ResponseException('Route handler must return a Response instance.');
+            throw new ResponseException(
+                debugMsg: "Request handler must return a Response instance."
+            );
         }
     }
 }

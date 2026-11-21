@@ -34,7 +34,10 @@ class RequestHandler {
         try {
             $controller = $this->route->getControllerObject($this->request);
         } catch (Throwable $ex) {
-            throw new ResponseException('Issue while initiating the controller.', HttpStatus::INTERNAL_SERVER_ERROR, $ex->getTrace()); 
+            throw new ResponseException(
+                debugMsg: $ex->getMessage(),
+                trace: $ex->getTrace()
+            ); 
         }
         ProcessValidator::validateController($controller);
 
@@ -45,9 +48,17 @@ class RequestHandler {
         try {
             $response = call_user_func_array($handler, array_values($params));
         } catch (TypeError $ex) {
-            throw new ResponseException('Invalid URI parameter values. Check your request!', HttpStatus::BAD_REQUEST, $ex->getTrace());
+            throw new ResponseException(
+                errorMsg: 'Invalid URI parameter values. Check your request!',
+                statusCode: HttpStatus::BAD_REQUEST,
+                debugMsg: $ex->getMessage(),
+                trace: $ex->getTrace()
+            );
         } catch (Throwable $ex) {
-            throw new ResponseException('Issue while processing the request.', HttpStatus::INTERNAL_SERVER_ERROR, $ex->getTrace());
+            throw new ResponseException(
+                debugMsg: $ex->getMessage(),
+                trace: $ex->getTrace()
+            );
         }
         
         ProcessValidator::validateResponse($response);
